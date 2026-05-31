@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexAgent - Interactive Component Library</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">⚡</div>
+                    <div>
+                        <h1>NexAgent UI Library</h1>
+                        <p>Interactive Component Library - User Controlled</p>
+                    </div>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="icon">📧</span>
+                        <span>nexeagent@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">📞</span>
+                        <span>03222100121</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">🔗</span>
+                        <span>NexE-Agent</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-buttons">
+                <button class="nav-btn active" data-tab="components">📦 Components</button>
+                <button class="nav-btn" data-tab="interactive">🎮 Interactive Zone</button>
+                <button class="nav-btn" data-tab="docs">📚 Documentation</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="container">
+            <div class="status-content">
+                <div class="status-item">
+                    <span class="icon">👋</span>
+                    <span>Welcome! Click buttons to see actions</span>
+                </div>
+                <div class="status-item">
+                    <span class="icon">🖱️</span>
+                    <span id="actionCount">0</span> Actions Performed
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Components Tab - User Interactive -->
+            <div id="componentsTab" class="tab-content active">
+                <!-- Buttons Section - User clicks -->
+                <section class="section">
+                    <h2 class="section-title">🎨 Buttons - Click to See Effect</h2>
+                    <div class="buttons-demo">
+                        <button class="btn btn-primary" onclick="handleButtonClick('Primary Button')">Primary Button</button>
+                        <button class="btn btn-secondary" onclick="handleButtonClick('Secondary Button')">Secondary Button</button>
+                        <button class="btn btn-success" onclick="handleButtonClick('Success Button')">Success Button</button>
+                        <button class="btn btn-danger" onclick="handleButtonClick('Danger Button')">Danger Button</button>
+                        <button class="btn btn-outline" onclick="handleButtonClick('Outline Button')">Outline Button</button>
+                    </div>
+                    <div class="feedback-area" id="buttonFeedback">
+                        <p class="feedback-placeholder">✨ Click any button above to see feedback here</p>
+                    </div>
+                </section>
+
+                <!-- Cards Section - User clicks -->
+                <section class="section">
+                    <h2 class="section-title">🃏 Cards - Click to Interact</h2>
+                    <div class="cards-grid">
+                        <div class="card" onclick="handleCardClick('Getting Started')">
+                            <div class="card-icon">🚀</div>
+                            <h3>Getting Started</h3>
+                            <p>Learn how to use NexAgent components in your web application.</p>
+                            <button class="btn btn-primary btn-small" onclick="event.stopPropagation(); handleCardAction('Getting Started')">Learn More →</button>
+                        </div>
+                        <div class="card" onclick="handleCardClick('Real-time Features')">
+                            <div class="card-icon">⚡</div>
+                            <h3>Real-time Features</h3>
+                            <p>Built-in WebSocket support for live updates and notifications.</p>
+                            <button class="btn btn-success btn-small" onclick="event.stopPropagation(); handleCardAction('Real-time Features')">Try Demo →</button>
+                        </div>
+                        <div class="card" onclick="handleCardClick('Customizable')">
+                            <div class="card-icon">🎨</div>
+                            <h3>Customizable</h3>
+                            <p>Fully customizable components with modern CSS features.</p>
+                            <button class="btn btn-outline btn-small" onclick="event.stopPropagation(); handleCardAction('Customizable')">Customize →</button>
+                        </div>
+                    </div>
+                    <div class="feedback-area" id="cardFeedback">
+                        <p class="feedback-placeholder">✨ Click any card above to see feedback here</p>
+                    </div>
+                </section>
+
+                <!-- Inputs Section - User types and submits -->
+                <section class="section">
+                    <h2 class="section-title">📝 Inputs - Fill and Submit</h2>
+                    <div class="form-demo">
+                        <div class="form-group">
+                            <label>Your Name *</label>
+                            <input type="text" id="nameInput" class="input" placeholder="Enter your name">
+                            <span class="error-msg" id="nameError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address *</label>
+                            <input type="email" id="emailInput" class="input" placeholder="Enter your email">
+                            <span class="error-msg" id="emailError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Your Message *</label>
+                            <textarea id="messageInput" class="input textarea" rows="4" placeholder="Enter your message"></textarea>
+                            <span class="error-msg" id="messageError"></span>
+                        </div>
+                        <button class="btn btn-primary" onclick="submitForm()">Send Message</button>
+                        <button class="btn btn-secondary" onclick="clearForm()">Clear Form</button>
+                    </div>
+                    <div class="feedback-area" id="formFeedback">
+                        <p class="feedback-placeholder">✨ Fill the form and click Send Message</p>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Interactive Zone Tab - User manually controls everything -->
+            <div id="interactiveTab" class="tab-content">
+                <div class="interactive-grid">
+                    <!-- Left Panel - User Actions -->
+                    <div class="actions-panel">
+                        <div class="action-card">
+                            <h3>🎮 User Action Center</h3>
+                            <p>Click these buttons to perform actions manually:</p>
+                            
+                            <div class="action-buttons">
+                                <button class="btn btn-primary" onclick="addUserNotification('success', 'User clicked Success Action!')">
+                                    ✅ Show Success Message
+                                </button>
+                                <button class="btn btn-danger" onclick="addUserNotification('error', 'User triggered Error Alert!')">
+                                    ❌ Show Error Message
+                                </button>
+                                <button class="btn btn-warning" onclick="addUserNotification('warning', 'User initiated Warning!')">
+                                    ⚠️ Show Warning Message
+                                </button>
+                                <button class="btn btn-info" onclick="addUserNotification('info', 'User requested Information')">
+                                    ℹ️ Show Info Message
+                                </button>
+                            </div>
+                            
+                            <div class="action-buttons">
+                                <button class="btn btn-success" onclick="addCustomMessage()">
+                                    ✏️ Add Custom Message
+                                </button>
+                                <button class="btn btn-outline" onclick="clearAllNotifications()">
+                                    🗑️ Clear All Notifications
+                                </button>
+                                <button class="btn btn-secondary" onclick="incrementCounter()">
+                                    ➕ Increment Counter
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="action-card">
+                            <h3>✏️ Custom Message Input</h3>
+                            <div class="form-group">
+                                <label>Write your own message:</label>
+                                <input type="text" id="customMessageInput" class="input" placeholder="Type your custom message here...">
+                            </div>
+                            <button class="btn btn-primary" onclick="sendCustomMessage()">Send Custom Message</button>
+                        </div>
+
+                        <div class="action-card">
+                            <h3>📊 Statistics</h3>
+                            <div class="stat-item">
+                                <span>Total Actions:</span>
+                                <strong id="totalActions">0</strong>
+                            </div>
+                            <div class="stat-item">
+                                <span>Notifications Sent:</span>
+                                <strong id="totalNotifications">0</strong>
+                            </div>
+                            <div class="stat-item">
+                                <span>Last Action:</span>
+                                <strong id="lastActionTime">--:--:--</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Panel - Live Notification Panel (User Controlled) -->
+                    <div class="notification-panel">
+                        <div class="panel-header">
+                            <h3>🔔 User Notifications Panel</h3>
+                            <span class="notification-count" id="notificationCount">0</span>
+                            <button class="clear-btn" onclick="clearAllNotifications()">Clear All</button>
+                        </div>
+                        <div class="notifications-list" id="notificationsList">
+                            <div class="empty-state">
+                                <div class="empty-icon">🔔</div>
+                                <p>No notifications yet</p>
+                                <small>Click buttons above to create notifications</small>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <p>🖱️ User Controlled - No auto notifications</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Toast Demo Section -->
+                <div class="toast-demo-section">
+                    <h3>🍞 Toast Notifications Demo</h3>
+                    <div class="toast-demo-buttons">
+                        <button class="btn btn-success" onclick="showToast.success('This is a success toast! User clicked it.')">
+                            Show Success Toast
+                        </button>
+                        <button class="btn btn-danger" onclick="showToast.error('This is an error toast! Something went wrong.')">
+                            Show Error Toast
+                        </button>
+                        <button class="btn btn-warning" onclick="showToast.warning('This is a warning toast! Please check.')">
+                            Show Warning Toast
+                        </button>
+                        <button class="btn btn-info" onclick="showToast.info('This is an info toast! Just for information.')">
+                            Show Info Toast
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documentation Tab -->
+            <div id="docsTab" class="tab-content">
+                <div class="docs-container">
+                    <div class="docs-sidebar">
+                        <h3>📖 How to Use</h3>
+                        <ul>
+                            <li><a href="#buttons" onclick="return false;">Buttons Usage</a></li>
+                            <li><a href="#cards" onclick="return false;">Cards Usage</a></li>
+                            <li><a href="#forms" onclick="return false;">Forms Usage</a></li>
+                            <li><a href="#notifications" onclick="return false;">Notifications</a></li>
+                            <li><a href="#toasts" onclick="return false;">Toasts</a></li>
+                        </ul>
+                    </div>
+                    <div class="docs-content">
+                        <h1>User Manual - NexAgent Interactive UI</h1>
+                        <p>This is a <strong>user-controlled</strong> component library. Nothing happens automatically. You have to click buttons and perform actions yourself.</p>
+                        
+                        <h2 id="buttons">How to Use Buttons</h2>
+                        <p>Click any button in the Components tab. You will see:</p>
+                        <ul>
+                            <li>A success message</li>
+                            <li>A notification in the panel</li>
+                            <li>A toast popup</li>
+                            <li>The action counter increases</li>
+                        </ul>
+                        
+                        <div class="code-block">
+                            <pre><code>&lt;button class="btn btn-primary" onclick="handleButtonClick('Primary')"&gt;
+    Click Me
+&lt;/button&gt;</code></pre>
+                        </div>
+
+                        <h2 id="cards">How to Use Cards</h2>
+                        <p>Cards have two ways to interact:</p>
+                        <ul>
+                            <li><strong>Click on the card body</strong> - Shows card info</li>
+                            <li><strong>Click on card button</strong> - Triggers specific action</li>
+                        </ul>
+
+                        <h2 id="forms">How to Use Forms</h2>
+                        <ul>
+                            <li>Fill in your name, email, and message</li>
+                            <li>Click "Send Message" to submit</li>
+                            <li>Validation will check if fields are empty</li>
+                            <li>Success shows a notification and toast</li>
+                        </ul>
+
+                        <h2 id="notifications">How to Create Notifications</h2>
+                        <p>Go to <strong>Interactive Zone</strong> tab and:</p>
+                        <ul>
+                            <li>Click "Show Success Message" buttons</li>
+                            <li>Type a custom message and send it</li>
+                            <li>Each action creates a notification</li>
+                            <li>Notifications appear in the right panel</li>
+                        </ul>
+
+                        <h2 id="toasts">How to See Toasts</h2>
+                        <p>Click any toast button in Interactive Zone:</p>
+                        <ul>
+                            <li><strong>Success Toast</strong> - Green, positive action</li>
+                            <li><strong>Error Toast</strong> - Red, something went wrong</li>
+                            <li><strong>Warning Toast</strong> - Yellow, caution message</li>
+                            <li><strong>Info Toast</strong> - Blue, information message</li>
+                        </ul>
+
+                        <div class="tip-box">
+                            <strong>💡 Tip:</strong> All actions are manual. Nothing auto-refreshes. You are in complete control!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p>© 2024 NexAgent Interactive UI Library | User Controlled System</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#" onclick="resetAll()">Reset All</a>
+                    <a href="#" onclick="showHelp()">Help</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
